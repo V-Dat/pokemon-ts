@@ -1,5 +1,5 @@
 import Card from "../../Common/Card/Card";
-import Image from "../../Common/Image/Text";
+import Image from "../../Common/Image/Image";
 import Text from "../../Common/Text/Text";
 
 function CardTextAndImage(props: CardTextAndImageProps) {
