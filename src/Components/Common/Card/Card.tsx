@@ -18,5 +18,5 @@ export default Card;
 interface CardProps {
   className?: string;
   children?: ReactNode;
-  handleClickCard?: (event?: any) => void;
+  handleClickCard?: (event?: Event) => void;
 }
