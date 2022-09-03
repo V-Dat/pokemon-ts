@@ -9,11 +9,13 @@ export const PokemonSelector = (state: RootState) => {
   const previous = pokemonState.previous;
   const pokemonStateResults = pokemonState.results;
 
+  const hasNextData = next !== (null && "" && undefined);
+
   return {
     pokemonListObject,
     pokemonStateResults,
-    next,
     previous,
     isLoadingMorePokemon,
+    hasNextData,
   };
 };

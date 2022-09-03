@@ -30,7 +30,7 @@ export const PokemonSlice = createSlice({
           count: action.payload.count,
           next: action.payload.next,
           previous: action.payload.previous,
-          results: [...action.payload.results, ...state.pokemonState.results],
+          results: [...state.pokemonState.results, ...action.payload.results],
         };
         state.pokemonState = newPokemonState;
         state.isLoadingMorePokemon = false;
@@ -43,6 +43,7 @@ export const PokemonSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getDetailPokemon.fulfilled, (state, action) => {
+        console.log(action.payload.id);
         state.pokemonListObject = [...state.pokemonListObject, action.payload];
       })
       .addCase(getDetailPokemon.rejected, (state) => {

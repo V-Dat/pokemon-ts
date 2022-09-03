@@ -1,28 +1,31 @@
 import "./Home.scss";
-import CardTextAndImage from "../Components/Layout/CardTextAndImage/CardTextAndImage";
 import { useState } from "react";
 
 import { useAppSelector } from "../app/hooks";
 import { PokemonSelector } from "../features/PokemonSlice/PokemonSelector";
 import { isArrayEmpty } from "../app/common";
 import { useDispatchPokemon } from "../features/PokemonSlice/PokemonApi";
+import Loading from "../Components/Common/Loading/Loading";
+import CardTextAndImage from "../Components/Layout/CardTextAndImage/CardTextAndImage";
 
 function Home() {
   const [queryParams, setQueryParams] = useState({ limit: 25, offset: 0 });
-  const { pokemonListObject, isLoadingMorePokemon, next } =
+  const { pokemonListObject, isLoadingMorePokemon, hasNextData } =
     useAppSelector(PokemonSelector);
   const queryString = `?offset=${queryParams.offset}&limit=${queryParams.limit}`;
   useDispatchPokemon(queryString);
 
   const handleScroll = (event: any) => {
     const bottom =
-      event.target.scrollHeight - event.target.clientHeight - 300 <=
+      event.target.scrollHeight - event.target.clientHeight - 80 <=
       event.target.scrollTop;
-    const hasNextData = next !== (null && "" && undefined);
-    const newOffset = queryParams.offset + 25;
+    const newOffset = queryParams.offset + 10;
+    const newLimit = 10;
     if (bottom && hasNextData && isLoadingMorePokemon === false) {
-      setQueryParams((prev) => ({ ...prev, offset: newOffset }));
+      setQueryParams({ limit: newLimit, offset: newOffset });
     }
+
+    console.log("calling api");
   };
 
   return (
@@ -39,6 +42,7 @@ function Home() {
             />
           ))}
       </div>
+      {isLoadingMorePokemon && <Loading />}
     </div>
   );
 }
