@@ -17,7 +17,7 @@ export function useDispatchPokemon(queryString: string) {
     const controller = new AbortController();
     dispatchFirstTime();
     return () => controller.abort();
-  }, []);
+  }, [queryString]);
 
   return;
 }

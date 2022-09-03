@@ -2,6 +2,7 @@ import { RootState } from "../../app/store";
 
 export const PokemonSelector = (state: RootState) => {
   const pokemonListObject = state.pokemon.pokemonListObject;
+  const isLoadingMorePokemon = state.pokemon.isLoadingMorePokemon;
   const pokemonState = state.pokemon.pokemonState;
   // const { pokemonState, pokemonListObject } = dataApi;
   const next = pokemonState.next;
@@ -13,5 +14,6 @@ export const PokemonSelector = (state: RootState) => {
     pokemonStateResults,
     next,
     previous,
+    isLoadingMorePokemon,
   };
 };

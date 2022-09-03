@@ -11,6 +11,7 @@ const initialState: InitialState = {
   },
   pokemonListObject: [],
   status: "idle",
+  isLoadingMorePokemon: false,
 };
 
 export const PokemonSlice = createSlice({
@@ -21,6 +22,7 @@ export const PokemonSlice = createSlice({
     builder
       .addCase(getPokemons.pending, (state) => {
         state.status = "loading";
+        state.isLoadingMorePokemon = true;
       })
       .addCase(getPokemons.fulfilled, (state, action) => {
         state.status = "idle";
@@ -31,9 +33,11 @@ export const PokemonSlice = createSlice({
           results: [...action.payload.results, ...state.pokemonState.results],
         };
         state.pokemonState = newPokemonState;
+        state.isLoadingMorePokemon = false;
       })
       .addCase(getPokemons.rejected, (state) => {
         state.status = "failed";
+        state.isLoadingMorePokemon = false;
       })
       .addCase(getDetailPokemon.pending, (state) => {
         state.status = "loading";
@@ -68,6 +72,7 @@ export interface InitialState {
   pokemonState: PokemonState;
   pokemonListObject: any[];
   status: "idle" | "loading" | "failed";
+  isLoadingMorePokemon: boolean;
 }
 
 interface PokemonState {
