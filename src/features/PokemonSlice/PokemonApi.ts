@@ -10,10 +10,17 @@ export function useDispatchPokemon(queryString: string) {
     dispatch(getPokemons(queryString)).then((res) => {
       const pokemonsArray = res.payload.results;
 
-      console.log(333, pokemonsArray);
-      pokemonsArray.map((pokemon: any) => {
-        dispatch(getDetailPokemon(pokemon.name));
-      });
+      const loadCatalogsAsync = async () => {
+        try {
+          pokemonsArray.map(async (pokemon: any) => {
+            await dispatch(getDetailPokemon(pokemon.name));
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      };
+
+      loadCatalogsAsync();
     });
     return () => controller.abort();
   }, [dispatch, queryString]);

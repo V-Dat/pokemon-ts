@@ -5,6 +5,7 @@ function Image(props: ImageProps) {
       className={`image-root ${className ? className : ""}`}
       alt={alt}
       src={src}
+      loading="lazy"
     />
   );
 }

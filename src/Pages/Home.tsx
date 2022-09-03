@@ -1,5 +1,5 @@
 import "./Home.scss";
-import { useState } from "react";
+import { useState, lazy } from "react";
 
 import { useAppSelector } from "../app/hooks";
 import { PokemonSelector } from "../features/PokemonSlice/PokemonSelector";
@@ -19,13 +19,11 @@ function Home() {
     const bottom =
       event.target.scrollHeight - event.target.clientHeight - 80 <=
       event.target.scrollTop;
-    const newOffset = queryParams.offset + 10;
-    const newLimit = 10;
+    const newOffset = queryParams.offset + 25;
+    const newLimit = 25;
     if (bottom && hasNextData && isLoadingMorePokemon === false) {
       setQueryParams({ limit: newLimit, offset: newOffset });
     }
-
-    console.log("calling api");
   };
 
   return (
@@ -35,7 +33,7 @@ function Home() {
           pokemonListObject.map((pokemon: any) => (
             <CardTextAndImage
               className="pokemon"
-              key={pokemon.id}
+              key={pokemon.id + pokemon.name}
               text={pokemon.name}
               alt={pokemon.name}
               src={pokemon.sprites.front_default}
