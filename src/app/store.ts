@@ -1,4 +1,9 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
 import counterReducer from "../features/counter/counterSlice";
 import PokemonReducer from "../features/PokemonSlice/PokemonSlice";
 
@@ -7,6 +12,10 @@ export const store = configureStore({
     counter: counterReducer,
     pokemon: PokemonReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type AppDispatch = typeof store.dispatch;
