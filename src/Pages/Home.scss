@@ -1,0 +1,17 @@
+.home-root {
+  height: calc(100vh - 10rem);
+  overflow-y: scroll;
+
+  .pokemon-group {
+    margin: 0 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: 5rem;
+    .pokemon {
+      width: 20%;
+      text-align: center;
+    }
+  }
+}

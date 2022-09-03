@@ -8,9 +8,13 @@ const headerOptions: any = (isRefreshToken: boolean) => {
     return {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "true",
     };
   } else {
-    return { "Content-Type": "application/json" };
+    return {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "true",
+    };
   }
 };
 

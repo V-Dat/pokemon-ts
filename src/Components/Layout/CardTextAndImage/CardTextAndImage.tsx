@@ -23,5 +23,5 @@ interface CardTextAndImageProps {
   src: string;
   alt: string;
   className?: string;
-  handleClickCardTextAndImage: (event?: Event) => void;
+  handleClickCardTextAndImage?: (event?: Event) => void;
 }
