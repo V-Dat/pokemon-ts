@@ -43,7 +43,6 @@ export const PokemonSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getDetailPokemon.fulfilled, (state, action) => {
-        console.log(action.payload.id);
         state.pokemonListObject = [...state.pokemonListObject, action.payload];
       })
       .addCase(getDetailPokemon.rejected, (state) => {

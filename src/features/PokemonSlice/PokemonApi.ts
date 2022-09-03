@@ -16,7 +16,7 @@ export function useDispatchPokemon(queryString: string) {
             await dispatch(getDetailPokemon(pokemon.name));
           });
         } catch (e) {
-          console.error(e);
+          // console.error(e);
         }
       };
 
